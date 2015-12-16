@@ -169,11 +169,12 @@
     
     var isChordLine = function (input) {
         var tokens = input.replace(/\s+/, " ").split(" ");
+        var allow_char = "/[^-\(\)\[\]]/";
 
         // Try to find tokens that aren't chords
         // if we find one we know that this line is not a 'chord' line.
         for (var i = 0; i < tokens.length; i++) {
-            if (!$.trim(tokens[i]).length == 0 && !tokens[i].match(opts.chordRegex))
+            if (!$.trim(tokens[i]).length == 0 && !tokens[i].match(opts.chordRegex) && tokens[i].match(allow_char))
                 return false;
         }
         return true;
